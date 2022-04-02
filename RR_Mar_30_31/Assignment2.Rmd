@@ -16,6 +16,7 @@ nocite: '@*'
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
 # Breaking Bad - the first season. Insights on the viewership.
@@ -43,6 +44,18 @@ summary(bb_season_data$us_viewers)
 
 Summary of some basic statistics on viewership in USA revealed that this distribution is positively skewed.
 
-##
+## Visualization
+
+### Viewership over time
+
+```{r}
+bb_season_data %>%
+  ggplot(aes(x = original_air_date, y = us_viewers)) +
+  geom_line() +
+  labs(x = "Airing date",
+       y = "U.S. Viewers (millions)",
+       title = "Line chart showing the viewership data") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
 
 # References
