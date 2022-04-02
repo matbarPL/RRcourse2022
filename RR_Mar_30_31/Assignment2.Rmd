@@ -34,5 +34,15 @@ url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Breaking_Bad_l
 
 <center><img src="`r url`"></center>
 
+## Loading data and presenting basic statistics
+
+```{r}
+load("../Data/bb_season_1.RData")
+summary(bb_season_data$us_viewers)
+```
+
+Summary of some basic statistics on viewership in USA revealed that this distribution is positively skewed.
+
+##
 
 # References
