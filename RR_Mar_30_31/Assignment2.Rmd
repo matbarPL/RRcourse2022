@@ -28,4 +28,11 @@ During the course of the series, 62 episodes of Breaking Bad aired over five sea
 
 On October 11, 2019, Netflix released El Camino: A Breaking Bad Movie, a feature film continuation of Breaking Bad, written and directed by Gilligan [@2]. An additional short film Snow Globe: A Breaking Bad Short was released on February 17, 2020 [@3].
 
+```{r, echo=FALSE}
+url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Breaking_Bad_logo.svg/480px-Breaking_Bad_logo.svg.png"
+```
+
+<center><img src="`r url`"></center>
+
+
 # References
