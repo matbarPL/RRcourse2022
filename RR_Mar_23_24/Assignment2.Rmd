@@ -58,4 +58,22 @@ bb_season_data %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+```{r}
+change_in_viewership <- bb_season_data %>%
+  mutate(episode_to_episode_change_in_viewership = round(100*(us_viewers - lag(us_viewers))/lag(us_viewers)),
+         episode_to_episode = paste0(as.character(no_season), "-", as.character(lag(no_season)))) %>%
+  filter(!is.na(episode_to_episode_change_in_viewership))
+max_decrease <- change_in_viewership %>% pull(episode_to_episode_change_in_viewership) %>% min()
+min_change <- change_in_viewership %>%
+  mutate(episode_to_episode_change_in_viewership = abs(episode_to_episode_change_in_viewership)) %>% pull(episode_to_episode_change_in_viewership) %>%
+  min()
+change_in_viewership %>%
+  ggplot(aes(x = episode_to_episode, y = episode_to_episode_change_in_viewership)) +
+  geom_col() +
+  labs(x = "Episode-to-episode",
+       y = "Change in viewership of U.S. Viewers [%]",
+       title = "Bar chart for change in episode-to-episode change in viewership.")
+```
+
+
 # References
