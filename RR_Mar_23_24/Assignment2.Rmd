@@ -75,5 +75,6 @@ change_in_viewership %>%
        title = "Bar chart for change in episode-to-episode change in viewership.")
 ```
 
+The biggest decrease of `r max_decrease` % has been seen between 3rd and 2nd episodes. On the other hand, the most remarkable peak in the viewership is associated with 7th and 6th components of the TV series. Considering the smallest relative difference it's equal to `r min_change`.
 
 # References
