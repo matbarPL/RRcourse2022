@@ -1,7 +1,7 @@
 ---
 title: "Assignment 2"
 author: Mateusz Baryła
-date: "4/2/2022"
+date: "4/6/2022"
 output:
     html_document:
         code_folding: hide
@@ -16,7 +16,8 @@ nocite: '@*'
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
+library(tidyverse, kableExtra)
+report_theme <- theme(plot.title = element_text(hjust = 0.5, size = 16))
 ```
 
 # Breaking Bad - the first season. Insights on the viewership.
@@ -39,12 +40,20 @@ url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Breaking_Bad_l
 
 ```{r}
 load("../Data/bb_season_1.RData")
+bb_season_data %>% head(3) %>% kableExtra::kable() %>% kableExtra::kable_styling()
+```
+
+Firstly, we present the first three rows of the dataset.
+
+```{r}
 summary(bb_season_data$us_viewers)
 ```
 
-Summary of some basic statistics on viewership in USA revealed that this distribution is positively skewed.
+In order to build preliminary insights of what's hidden in the dataset we provide the summary of some basic statistics on viewership in USA. It revealed that this distribution is positively skewed. Having done that, we can gracefully move to the visualization part.
 
 ## Visualization
+
+Showing viewership over time is a great way to built  an intuition towards the dataset.
 
 ### Viewership over time
 
@@ -55,8 +64,12 @@ bb_season_data %>%
   labs(x = "Airing date",
        y = "U.S. Viewers (millions)",
        title = "Line chart showing the viewership data") +
-  theme(plot.title = element_text(hjust = 0.5))
+  report_theme
 ```
+
+The plot above shows that there were a few changes in viewership. Both positive and negative fluctuations are visible. From this perspective they might seem significant, nevertheless the relative change in percentage points might create better insights.
+
+### Episode-to-episode change in viewership
 
 ```{r}
 change_in_viewership <- bb_season_data %>%
@@ -72,7 +85,8 @@ change_in_viewership %>%
   geom_col() +
   labs(x = "Episode-to-episode",
        y = "Change in viewership of U.S. Viewers [%]",
-       title = "Bar chart for change in episode-to-episode change in viewership.")
+       title = "Bar chart for change in episode-to-episode change in viewership.") +
+  report_theme
 ```
 
 The biggest decrease of `r max_decrease` % has been seen between 3rd and 2nd episodes. On the other hand, the most remarkable peak in the viewership is associated with 7th and 6th components of the TV series. Considering the smallest relative difference it's equal to `r min_change`.
