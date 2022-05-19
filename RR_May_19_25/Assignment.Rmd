@@ -1,0 +1,32 @@
+---
+title: "Assignment"
+author: "Mateusz Baryła"
+date: "19 05 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Assignment
+
+```{r}
+library(readxl)
+```
+
+
+```{r}
+metaanalysis_data <- readxl::read_excel('data\\metaanalysis_data.xlsx')
+```
+
+```{r}
+m <- meta::metagen(TE=,
+             seTE=,
+             data=metaanalysis_data,
+             studlab=paste(Study),
+             comb.fixed = TRUE,
+             comb.random = FALSE)
+m
+```
+
