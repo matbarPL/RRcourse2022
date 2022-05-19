@@ -30,3 +30,17 @@ m <- meta::metagen(TE=,
 m
 ```
 
+```{r}
+m.raw <- metacont(n.e=,
+                  mean.e=,
+                  sd.e=,
+                  n.c=,
+                  mean.c=,
+                  sd.c=,
+                  data=,
+                  studlab=paste(Study),
+                  comb.fixed = TRUE,
+                  comb.random = TRUE,
+)
+```
+
