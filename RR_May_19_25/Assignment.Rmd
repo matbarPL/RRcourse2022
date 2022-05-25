@@ -7,40 +7,38 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=15, fig.height=8)
 ```
 
 # Assignment
 
 ```{r}
 library(readxl)
+library(meta)
+library(metafor)
+library(dplyr)
 ```
 
 
 ```{r}
-metaanalysis_data <- readxl::read_excel('data\\metaanalysis_data.xlsx')
+metaanalysis_data <- read_excel('data\\metaanalysis_data.xlsx')
 ```
 
 ```{r}
-m <- meta::metagen(TE=,
-             seTE=,
-             data=metaanalysis_data,
-             studlab=paste(Study),
-             comb.fixed = TRUE,
-             comb.random = FALSE)
-m
-```
-
-```{r}
-m.raw <- metacont(n.e=,
-                  mean.e=,
-                  sd.e=,
-                  n.c=,
-                  mean.c=,
-                  sd.c=,
-                  data=,
+m.raw <- metacont(n.e=N_boys,
+                  mean.e=Mean_boys_play_male,
+                  sd.e=SD_boys_play_male,
+                  n.c=N_girls,
+                  mean.c=Mean_girls_play_male,
+                  sd.c=SD_girls_play_male,
+                  data=metaanalysis_data,
                   studlab=paste(Study),
                   comb.fixed = TRUE,
                   comb.random = TRUE,
 )
+m.raw
 ```
 
+```{r}
+m.raw %>% forest(sortvar=TE)
+```
